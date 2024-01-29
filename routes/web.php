@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\PembelianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,4 @@ Route::get('/', function () {
 
 Route::resource('supplier', SupplierController::class);
 Route::resource('produk', ProdukController::class);
+Route::resource('pembelian', PembelianController::class);

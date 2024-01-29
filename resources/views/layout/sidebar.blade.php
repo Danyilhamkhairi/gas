@@ -17,7 +17,7 @@
               </li>
 
               <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="charts.html" aria-expanded="false"><i class="mdi mdi-shopping"></i><span class="hide-menu">Pembelian</span></a>
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('pembelian') }}" aria-expanded="false"><i class="mdi mdi-shopping"></i><span class="hide-menu">Pembelian</span></a>
               </li>
 
               <li class="sidebar-item">
