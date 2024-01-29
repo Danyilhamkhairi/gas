@@ -7,3 +7,13 @@ function rupiah($angka){
 	echo $hasil_rupiah;
  
 }
+
+
+function tanggal_indo($tgl)
+{
+	if ($tgl!='') {
+		return date('d-m-Y', strtotime($tgl));
+	}else {
+		return '-';
+	}
+}

@@ -22,4 +22,6 @@ Route::get('/', function () {
 
 Route::resource('supplier', SupplierController::class);
 Route::resource('produk', ProdukController::class);
+
+Route::get('pembelian/{id}/detail', [PembelianController::class, 'detail']);
 Route::resource('pembelian', PembelianController::class);

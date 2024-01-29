@@ -4,29 +4,29 @@
     
     <div class="col-md-6">
       <div class="card">
-        <form class="form-horizontal" action="{{ url('produk') }}" method="post">
+        <form class="form-horizontal" action="{{ url('pembelian') }}" method="post">
           {{ csrf_field() }}
           <div class="card-body">
-            <h5 class="card-title">Tambah Produk</h5>
+            <h5 class="card-title">Tambah Pembelian</h5>
             <br>
             <div class="form-group row">
-              <label class="col-sm-3 text-end control-label col-form-label">Nama produk</label>
+              <label class="col-sm-3 text-end control-label col-form-label">Tanggal Pembelian</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="NamaProduk">
+                <input type="date" class="form-control" name="TanggalPembelian">
               </div>
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-3 text-end control-label col-form-label">Harga</label>
+              <label class="col-sm-3 text-end control-label col-form-label">Supplier</label>
               <div class="col-sm-9">
-                <input type="number" class="form-control" name="Harga">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-sm-3 text-end control-label col-form-label">Stok</label>
-              <div class="col-sm-9">
-                <input type="number" class="form-control" name="Stok">
+                <select name="SupplierID" class="form-control">
+                  <option value="">Pilih Supplier</option>
+                  @if (@$supplier!=null)
+                    @foreach ($supplier as $s)
+                            <option value="{{ $s->SupplierID }}">{{ $s->NamaSupplier }}</option>
+                          @endforeach      
+                  @endif
+                </select>
               </div>
             </div>
             
@@ -37,7 +37,7 @@
                 Submit
               </button>
 
-              <a href="{{ url('produk') }}" class="btn btn-warning">Batal</a>
+              <a href="{{ url('pembelian') }}" class="btn btn-warning">Batal</a>
             </div>
           </div>
         </form>

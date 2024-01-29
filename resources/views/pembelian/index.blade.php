@@ -11,9 +11,9 @@
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>Nama pembelian</th>
-                    <th>Harga</th>
-                    <th>Stok</th>
+                    <th>Tanggal Pembelian</th>
+                    <th>Supllier</th>
+                    <th>Total Harga</th>
                     <th>Opsi</th>
                   </tr>
                 </thead>
@@ -25,13 +25,15 @@
                     @foreach ($data as $d)
                       <tr>
                         <td>{{ @$no++; }}</td>
-                        <td>{{ @$d->Namapembelian; }}</td>
-                        <td>{{ rupiah(@$d->Harga); }}</td>
-                        <td>{{ @$d->Stok; }}</td>
+                        <td>{{ tanggal_indo(@$d->TanggalPembelian); }}</td>
+                        <td>{{ @$d->supplier->NamaSupplier; }}</td>
+                        <td>{{ rupiah(@$d->TotalHarga) }}</td>
                         <td>
                           <a style="float: left;" href="{{ url('pembelian').'/'.@$d->PembelianID.'/edit' }}" class="btn btn-warning btn-sm">Edit</a>
 
-                          <form name="theForm" style="float: left; margin-left: 4px" method="POST" action="{{ url('/pembelian').'/'.$d->PembelianID }}">
+                          <a style="float: left; margin-left: 2px" href="{{ url('pembelian').'/'.@$d->PembelianID.'/detail' }}" class="btn btn-info btn-sm">Detail</a>
+
+                          <form name="theForm" style="float: left; margin-left: 2px" method="POST" action="{{ url('/pembelian').'/'.$d->PembelianID }}">
                                   {{ csrf_field() }}
                                   {{ method_field('DELETE') }}
 

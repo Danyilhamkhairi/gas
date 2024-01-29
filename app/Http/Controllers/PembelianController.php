@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use App\Models\Pembelian;
+Use App\Models\Supplier;
+Use App\Models\Produk;
 
 class PembelianController extends Controller
 {
@@ -17,44 +19,40 @@ class PembelianController extends Controller
 
    public function create()
    {
-   	return view($this->dir.'.create');
+      $supplier = Supplier::all();
+   	return view($this->dir.'.create', compact('supplier'));
    }
 
    public function store(Request $req)
    {
    	$simpan = new Pembelian;
-   	$simpan->NamaPembelian = $req->NamaPembelian;  
-      $simpan->Harga = $req->Harga;   
-      $simpan->Stok = $req->Stok;
+   	$simpan->TanggalPembelian = $req->TanggalPembelian;  
+      $simpan->SupplierID = $req->SupplierID;
    	$save = $simpan->save();
    	if($save){
          return redirect()->to($this->dir.'')->with('message','Data berhasil ditambahkan');
-   		// return redirect()->to('mobil');
    	}else {
          return redirect()->back()->with('error','Data gagal ditambahkan');
-   		// return "error";
    	}
    }
 
    public function edit($id)
    {
    	$data = Pembelian::find($id);
-   	return view($this->dir.'.edit', compact('data'));
+      $supplier = Supplier::all();
+   	return view($this->dir.'.edit', compact('data', 'supplier'));
    }
 
     public function update(Request $req, $id)
    {
       $simpan = Pembelian::find($id);
-      $simpan->NamaPembelian = $req->NamaPembelian;  
-      $simpan->Harga = $req->Harga;   
-      $simpan->Stok = $req->Stok;
+      $simpan->TanggalPembelian = $req->TanggalPembelian;  
+      $simpan->SupplierID = $req->SupplierID;
       $save = $simpan->save();
       if($save){
          return redirect()->to($this->dir.'')->with('message','Data berhasil dirubah');
-         // return redirect()->to('mobil');
       }else {
          return redirect()->back()->with('error','Data gagal ditambahkan');
-         // return "error";
       }
    }
 
@@ -64,10 +62,16 @@ class PembelianController extends Controller
       $delete = $data->delete();
       if($delete) {
          return redirect()->back()->with('message','Data berhasil dihapus');
-         // return redirect()->to('mobil');
       }else {
          return redirect()->back()->with('error','Data gagal dihapus');
-         // return "Gagal menghapus";
       }
+   }
+
+
+   public function detail(Request $req, $id)
+   {
+      $data_pembelian = Pembelian::find($id);
+      $produk = Produk::all();
+      return view($this->dir.'.detail', compact('data_pembelian', 'produk'));
    }
 }
