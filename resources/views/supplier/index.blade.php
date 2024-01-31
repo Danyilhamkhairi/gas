@@ -31,7 +31,7 @@
                         <td>
                           <a style="float: left;" href="{{ url('supplier').'/'.@$d->SupplierID.'/edit' }}" class="btn btn-warning btn-sm">Edit</a>
 
-                          <form name="theForm" style="float: left; margin-left: 4px" method="POST" action="{{ url('/supplier').'/'.$d->SupplierID }}">
+                          <form id="theForm" style="float: left; margin-left: 4px" method="POST" action="{{ url('/supplier').'/'.$d->SupplierID }}">
                                   {{ csrf_field() }}
                                   {{ method_field('DELETE') }}
 

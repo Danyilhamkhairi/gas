@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\DetailPembelianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,7 @@ Route::resource('produk', ProdukController::class);
 
 Route::get('pembelian/{id}/detail', [PembelianController::class, 'detail']);
 Route::resource('pembelian', PembelianController::class);
+
+Route::post('detailpembelian', [DetailPembelianController::class, 'store']);
+Route::delete('detailpembelian/{id}', [DetailPembelianController::class, 'destroy']);
+

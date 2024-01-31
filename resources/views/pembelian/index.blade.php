@@ -33,7 +33,7 @@
 
                           <a style="float: left; margin-left: 2px" href="{{ url('pembelian').'/'.@$d->PembelianID.'/detail' }}" class="btn btn-info btn-sm">Detail</a>
 
-                          <form name="theForm" style="float: left; margin-left: 2px" method="POST" action="{{ url('/pembelian').'/'.$d->PembelianID }}">
+                          <form id="theForm" style="float: left; margin-left: 2px" method="POST" action="{{ url('/pembelian').'/'.$d->PembelianID }}">
                                   {{ csrf_field() }}
                                   {{ method_field('DELETE') }}
 

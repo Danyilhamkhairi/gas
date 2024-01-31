@@ -8,30 +8,23 @@ Use App\Models\Supplier;
 Use App\Models\Produk;
 Use App\Models\DetailPembelian;
 
-class PembelianController extends Controller
+class DetailPembelianController extends Controller
 {
-   protected $dir = 'pembelian';
-
-   public function index()
+    public function store(Request $req)
    {
-   	$data = Pembelian::all();
-   	return view($this->dir.'.index', compact('data'));
-   }
+   	$simpan = new DetailPembelian;
+   	$simpan->PembelianID = $req->PembelianID;   
+      $simpan->ProdukID = $req->ProdukID; 
+      $simpan->JumlahProduk = $req->JumlahProduk; 
 
-   public function create()
-   {
-      $supplier = Supplier::all();
-   	return view($this->dir.'.create', compact('supplier'));
-   }
+      $harga = info_produk($req->ProdukID)['harga'];
+      $Subtotal = $harga * $req->JumlahProduk;
+      $simpan->Subtotal = $Subtotal; 
+   	$save = $simpan->save();      
 
-   public function store(Request $req)
-   {
-   	$simpan = new Pembelian;
-   	$simpan->TanggalPembelian = $req->TanggalPembelian;  
-      $simpan->SupplierID = $req->SupplierID;
-   	$save = $simpan->save();
    	if($save){
-         return redirect()->to($this->dir.'')->with('message','Data berhasil ditambahkan');
+         update_total_harga($req->PembelianID);
+         return redirect()->back()->with('message','Data berhasil ditambahkan');
    	}else {
          return redirect()->back()->with('error','Data gagal ditambahkan');
    	}
@@ -59,22 +52,16 @@ class PembelianController extends Controller
 
    public function destroy($id)
    {
-      $data = Pembelian::find($id);
+      
+      $data = DetailPembelian::find($id);
+      $id_pembelian = $data->PembelianID;
       $delete = $data->delete();
       if($delete) {
-         $detail = DetailPembelian::where('PembelianID', $id)->delete();
+         update_total_harga($id_pembelian);
          return redirect()->back()->with('message','Data berhasil dihapus');
       }else {
          return redirect()->back()->with('error','Data gagal dihapus');
       }
    }
 
-
-   public function detail(Request $req, $id)
-   {
-      $data_pembelian = Pembelian::find($id);
-      $produk = Produk::all();
-      $detail = DetailPembelian::where('PembelianID', $id)->get();
-      return view($this->dir.'.detail', compact('data_pembelian', 'produk', 'detail'));
-   }
 }

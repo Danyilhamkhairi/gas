@@ -1,31 +1,31 @@
 @extends('layout.app')
 @section('konten')
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-5">
       <div class="card">
 
         <div class="card-body">
-          <h3 class="card-title">Detail Pembelian</h3>
+          <h5 class="card-title">Detail Pembelian</h5>
           <table cellpadding="10px" cellspacing="0" class="">
             <tr>
               <td>Tanggal Pembelian</td>
               <td>:</td>
               <td>{{ tanggal_indo(@$data_pembelian->TanggalPembelian) }}</td>
-
+            </tr>
+            <tr>
               <td>Nama Supplier</td>
               <td>:</td>
-              <td>{{ @$data_pembelian->supplier->NamaSupplier }}</td>
+              <td>{{ @$data_pembelian->supplier->NamaSupplier }}</td> 
             </tr>
           </table>
         </div>
       </div>
        
     </div>
-  </div>
 
-  <div class="row">
+
     
-    <div class="col-md-12">
+    <div class="col-md-7">
       <div class="card">
         <form class="form-inline" action="{{ url('detailpembelian') }}" method="post">
           {{ csrf_field() }}
@@ -33,7 +33,7 @@
           <div class="card-body">
             <h5 class="card-title">Tambah Produk Yang Dibeli</h5>
             <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-6">
               <label class=" text-end control-label col-form-label">Nama Produk</label>
               
                 <select class="form-control" name="ProdukID" required="required">
@@ -61,6 +61,70 @@
 
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Daftar Produk Pembelian</div>
+          <table class="table table-sniped" style="font-size: 12px;">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Produk</th>
+                <th>Harga produk</th>
+                <th>Jumlah</th>
+                <th>Subtotal</th>
+                <th>Opsi</th>
+              </tr>
+            </thead>
+            <tbody>
+               @if(@$detail != 'NULL')
+                @php
+                  $no = 1;
+                  $total_semua = 0;
+                @endphp
+                @foreach($detail as $d)
+                  @php
+                    $total_semua +=$d->Subtotal;
+                  @endphp
+                  <tr>
+                    <td>{{ @$no++ }}</td>
+                    <td>{{ @$d->produk->NamaProduk }}</td>
+                    <td>{{ @$d->produk->Harga }}</td>
+                    <td>{{ @$d->JumlahProduk }}</td>
+                    <td>{{ @$d->Subtotal }}</td>
+                    <td>
+                      <form id="theForm" name="theForm" style="float: left; margin-left: 2px" method="POST" action="{{ url('/detailpembelian').'/'.$d->DetailID }}">
+                          {{ csrf_field() }}
+                          {{ method_field('DELETE') }}
+
+                          <div class="form-group">
+                              <input type="button" onclick="hapus();" class="btn btn-danger btn-sm" value="Hapus">
+                          </div>
+                      </form>
+                    </td>
+                  </tr>
+                @endforeach
+               @endif
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+            Total Pembelian
+          </h5>
+          <h2>{{ rupiah(@$total_semua) }}</h2>
+        </div>
       </div>
     </div>
   </div> 
