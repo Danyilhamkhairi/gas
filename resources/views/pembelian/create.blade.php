@@ -20,7 +20,7 @@
               <label class="col-sm-3 text-end control-label col-form-label">Supplier</label>
               <div class="col-sm-9">
                 <select name="SupplierID" class="form-control">
-                  <option value="">Pilih Supplier</option>
+                  <option value="">-- Pilih Supplier --</option>
                   @if (@$supplier!=null)
                     @foreach ($supplier as $s)
                             <option value="{{ $s->SupplierID }}">{{ $s->NamaSupplier }}</option>

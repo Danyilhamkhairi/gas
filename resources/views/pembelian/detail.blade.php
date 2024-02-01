@@ -6,7 +6,7 @@
 
         <div class="card-body">
           <h5 class="card-title">Detail Pembelian</h5>
-          <table cellpadding="10px" cellspacing="0" class="">
+          <table cellpadding="7px" cellspacing="0" class="">
             <tr>
               <td>Tanggal Pembelian</td>
               <td>:</td>
@@ -95,16 +95,16 @@
                   <tr>
                     <td>{{ @$no++ }}</td>
                     <td>{{ @$d->produk->NamaProduk }}</td>
-                    <td>{{ @$d->produk->Harga }}</td>
+                    <td>{{ rupiah(@$d->produk->Harga) }}</td>
                     <td>{{ @$d->JumlahProduk }}</td>
-                    <td>{{ @$d->Subtotal }}</td>
+                    <td>{{ rupiah(@$d->Subtotal) }}</td>
                     <td>
-                      <form id="theForm" name="theForm" style="float: left; margin-left: 2px" method="POST" action="{{ url('/detailpembelian').'/'.$d->DetailID }}">
+                      <form id="theFormDetail{{ @$d->DetailID }}" style="float: left; margin-left: 2px" method="POST" action="{{ url('/detailpembelian').'/'.$d->DetailID }}">
                           {{ csrf_field() }}
                           {{ method_field('DELETE') }}
 
                           <div class="form-group">
-                              <input type="button" onclick="hapus();" class="btn btn-danger btn-sm" value="Hapus">
+                              <input type="button" data-id="{{ @$d->DetailID }}" class="btn btn-danger btn-sm delete-detail" value="Hapus">
                           </div>
                       </form>
                     </td>
@@ -127,5 +127,29 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+      <div class="card-body">
+        <a href="{{ url('pembelian') }}" class="btn btn-warning">Kembali</a>
+      </div>
+    </div>
+    </div>
   </div> 
+@endsection
+
+@section('js')
+  <script type="text/javascript">
+
+    $(document).on('click', '.delete-detail', function(){
+        var id = $(this).attr('data-id');
+        var result = confirm("Anda yakin Akan Menghapus Data Ini?");
+        if (result) {
+            // document.theForm.submit();
+            $("#theFormDetail"+id).submit();
+        }  
+    });
+  </script>
 @endsection
