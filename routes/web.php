@@ -5,6 +5,9 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\DetailPembelianController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\DetailPenjualanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +24,7 @@ Route::get('/', function () {
     return view('home.index');
 });
 
+Route::resource('pelanggan', PelangganController::class);
 Route::resource('supplier', SupplierController::class);
 Route::resource('produk', ProdukController::class);
 
@@ -30,3 +34,8 @@ Route::resource('pembelian', PembelianController::class);
 Route::post('detailpembelian', [DetailPembelianController::class, 'store']);
 Route::delete('detailpembelian/{id}', [DetailPembelianController::class, 'destroy']);
 
+Route::get('penjualan/{id}/detail', [PenjualanController::class, 'detail']);
+Route::resource('penjualan', PenjualanController::class);
+
+Route::post('detailpenjualan', [DetailPenjualanController::class, 'store']);
+Route::delete('detailpenjualan/{id}', [DetailPenjualanController::class, 'destroy']);

@@ -26,7 +26,7 @@ function info_produk($id){
 }
 
 
-function update_total_harga($id)
+function update_total_harga_pembelian($id)
 {
 	$detail = App\Models\DetailPembelian::where('PembelianID', $id)->get();
 	$total = 0;
@@ -35,6 +35,37 @@ function update_total_harga($id)
 	}
 
 	$data_pembelian = App\Models\Pembelian::find($id);
+	$data_pembelian->Totalharga = $total;
+	$data_pembelian->save();
+}
+
+function update_plus_produk($id_produk, $jumlah_produk)
+{
+	$produk = App\Models\Produk::find($id_produk);
+	$stok_sekarang = $produk->Stok;
+	$stok_baru = $stok_sekarang + $jumlah_produk;
+	$produk->Stok = $stok_baru;
+	$produk->save();
+}
+
+function update_min_produk($id_produk, $jumlah_produk)
+{
+	$produk = App\Models\Produk::find($id_produk);
+	$stok_sekarang = $produk->Stok;
+	$stok_baru = $stok_sekarang - $jumlah_produk;
+	$produk->Stok = $stok_baru;
+	$produk->save();
+}
+
+function update_total_harga_penjualan($id)
+{
+	$detail = App\Models\DetailPenjualan::where('PenjualanID', $id)->get();
+	$total = 0;
+	foreach ($detail as $d) {
+		$total += $d->Subtotal;	
+	}
+
+	$data_pembelian = App\Models\Penjualan::find($id);
 	$data_pembelian->Totalharga = $total;
 	$data_pembelian->save();
 }

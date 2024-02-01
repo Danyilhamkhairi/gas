@@ -3,32 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-Use App\Models\Pembelian;
-Use App\Models\Supplier;
+Use App\Models\Penjualan;
+Use App\Models\Pelanggan;
 Use App\Models\Produk;
-Use App\Models\DetailPembelian;
+Use App\Models\DetailPenjualan;
 
-class PembelianController extends Controller
+class PenjualanController extends Controller
 {
-   protected $dir = 'pembelian';
+   protected $dir = 'penjualan';
 
    public function index()
    {
-   	$data = Pembelian::all();
+   	$data = Penjualan::all();
    	return view($this->dir.'.index', compact('data'));
    }
 
    public function create()
    {
-      $supplier = Supplier::all();
-   	return view($this->dir.'.create', compact('supplier'));
+      $pelanggan = Pelanggan::all();
+   	return view($this->dir.'.create', compact('pelanggan'));
    }
 
    public function store(Request $req)
    {
-   	$simpan = new Pembelian;
-   	$simpan->TanggalPembelian = $req->TanggalPembelian;  
-      $simpan->SupplierID = $req->SupplierID;
+   	$simpan = new Penjualan;
+   	$simpan->TanggalPenjualan = $req->TanggalPenjualan;  
+      $simpan->PelangganID = $req->PelangganID;
    	$save = $simpan->save();
    	if($save){
          return redirect()->to($this->dir.'')->with('message','Data berhasil ditambahkan');
@@ -39,16 +39,16 @@ class PembelianController extends Controller
 
    public function edit($id)
    {
-   	$data = Pembelian::find($id);
-      $supplier = Supplier::all();
-   	return view($this->dir.'.edit', compact('data', 'supplier'));
+   	$data = Penjualan::find($id);
+      $pelanggan = Pelanggan::all();
+   	return view($this->dir.'.edit', compact('data', 'pelanggan'));
    }
 
     public function update(Request $req, $id)
    {
-      $simpan = Pembelian::find($id);
-      $simpan->TanggalPembelian = $req->TanggalPembelian;  
-      $simpan->SupplierID = $req->SupplierID;
+      $simpan = Penjualan::find($id);
+      $simpan->TanggalPenjualan = $req->TanggalPenjualan;  
+      $simpan->PelangganID = $req->PelangganID;
       $save = $simpan->save();
       if($save){
          return redirect()->to($this->dir.'')->with('message','Data berhasil dirubah');
@@ -59,15 +59,15 @@ class PembelianController extends Controller
 
    public function destroy($id)
    {
-      $data = Pembelian::find($id);
+      $data = Penjualan::find($id);
       $delete = $data->delete();
       if($delete) {
 
-         $detail = DetailPembelian::where('PembelianID', $id)->get();
+         $detail = DetailPenjualan::where('PenjualanID', $id)->get();
 
          foreach ($detail as $d) {
             update_min_produk($d->ProdukID, $d->JumlahProduk);
-            $hapus_detail = DetailPembelian::find($d->DetailID);
+            $hapus_detail = DetailPenjualan::find($d->DetailID);
             $hapus_detail->delete();
          }
 
@@ -80,9 +80,9 @@ class PembelianController extends Controller
 
    public function detail(Request $req, $id)
    {
-      $data_pembelian = Pembelian::find($id);
+      $data_penjualan = Penjualan::find($id);
       $produk = Produk::all();
-      $detail = DetailPembelian::where('PembelianID', $id)->get();
-      return view($this->dir.'.detail', compact('data_pembelian', 'produk', 'detail'));
+      $detail = DetailPenjualan::where('PenjualanID', $id)->get();
+      return view($this->dir.'.detail', compact('data_penjualan', 'produk', 'detail'));
    }
 }

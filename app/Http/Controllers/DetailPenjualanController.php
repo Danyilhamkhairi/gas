@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 Use App\Models\Pembelian;
 Use App\Models\Supplier;
 Use App\Models\Produk;
-Use App\Models\DetailPembelian;
+Use App\Models\DetailPenjualan;
 
-class DetailPembelianController extends Controller
+class DetailPenjualanController extends Controller
 {
     public function store(Request $req)
    {
-   	$simpan = new DetailPembelian;
-   	$simpan->PembelianID = $req->PembelianID;   
+   	$simpan = new DetailPenjualan;
+   	$simpan->PenjualanID = $req->PenjualanID;   
       $simpan->ProdukID = $req->ProdukID; 
       $simpan->JumlahProduk = $req->JumlahProduk; 
 
@@ -23,7 +23,7 @@ class DetailPembelianController extends Controller
    	$save = $simpan->save();      
 
    	if($save){
-         update_total_harga_pembelian($req->PembelianID);
+         update_total_harga_penjualan($req->PenjualanID);
          update_plus_produk($req->ProdukID, $req->JumlahProduk);
          return redirect()->back()->with('message','Data berhasil ditambahkan');
    	}else {
@@ -41,13 +41,13 @@ class DetailPembelianController extends Controller
    public function destroy($id)
    {
       
-      $data = DetailPembelian::find($id);
-      $id_pembelian = $data->PembelianID;
+      $data = DetailPenjualan::find($id);
+      $id_pembelian = $data->PenjualanID;
       $ProdukID = $data->ProdukID;
       $JumlahProduk = $data->JumlahProduk;
       $delete = $data->delete();
       if($delete) {
-         update_total_harga_pembelian($id_pembelian);
+         update_total_harga($id_pembelian);
          update_min_produk($ProdukID, $JumlahProduk);
          return redirect()->back()->with('message','Data berhasil dihapus');
       }else {
