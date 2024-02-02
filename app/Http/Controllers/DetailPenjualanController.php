@@ -24,7 +24,7 @@ class DetailPenjualanController extends Controller
 
    	if($save){
          update_total_harga_penjualan($req->PenjualanID);
-         update_plus_produk($req->ProdukID, $req->JumlahProduk);
+         update_min_produk($req->ProdukID, $req->JumlahProduk);
          return redirect()->back()->with('message','Data berhasil ditambahkan');
    	}else {
          return redirect()->back()->with('error','Data gagal ditambahkan');
@@ -42,13 +42,13 @@ class DetailPenjualanController extends Controller
    {
       
       $data = DetailPenjualan::find($id);
-      $id_pembelian = $data->PenjualanID;
+      $id_penjualan = $data->PenjualanID;
       $ProdukID = $data->ProdukID;
       $JumlahProduk = $data->JumlahProduk;
       $delete = $data->delete();
       if($delete) {
-         update_total_harga($id_pembelian);
-         update_min_produk($ProdukID, $JumlahProduk);
+         update_total_harga_penjualan($id_penjualan);
+         update_plus_produk($ProdukID, $JumlahProduk);
          return redirect()->back()->with('message','Data berhasil dihapus');
       }else {
          return redirect()->back()->with('error','Data gagal dihapus');

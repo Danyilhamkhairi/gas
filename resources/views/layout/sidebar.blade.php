@@ -5,7 +5,7 @@
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="{{ url('/') }}"
+                  href="{{ url('/beranda') }}"
                   aria-expanded="false"
                   ><i class="mdi mdi-view-dashboard"></i
                   ><span class="hide-menu">Dashboard</span></a
@@ -32,6 +32,14 @@
                 <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('supplier') }}" aria-expanded="false"><i class="mdi mdi-account-star"></i><span class="hide-menu">Supplier</span></a>
               </li>
 
+              @if (session('level') == 'administrator')
+              <li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('user') }}" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">User</span></a>
+              </li>
+                
+              @endif
+
+              
               
 
               

@@ -26,11 +26,11 @@
     
     <div class="col-md-7">
       <div class="card">
-        <form class="form-inline" action="{{ url('detailpembelian') }}" method="post">
+        <form class="form-inline" action="{{ url('detailpenjualan') }}" method="post">
           {{ csrf_field() }}
-          <input type="hidden" name="PembelianID" value="{{ @$data_penjualan->PembelianID }}">
+          <input type="hidden" name="PenjualanID" value="{{ @$data_penjualan->PenjualanID }}">
           <div class="card-body">
-            <h5 class="card-title">Tambah Produk Yang Dijual</h5>
+            <h5 class="card-title">Tambah Produk</h5>
             <div class="row">
             <div class="col-md-6">
               <label class=" text-end control-label col-form-label">Nama Produk</label>
@@ -98,7 +98,7 @@
                     <td>{{ @$d->JumlahProduk }}</td>
                     <td>{{ rupiah(@$d->Subtotal) }}</td>
                     <td>
-                      <form id="theFormDetail{{ @$d->DetailID }}" style="float: left; margin-left: 2px" method="POST" action="{{ url('/detailpembelian').'/'.$d->DetailID }}">
+                      <form id="theFormDetail{{ @$d->DetailID }}" style="float: left; margin-left: 2px" method="POST" action="{{ url('/detailpenjualan').'/'.$d->DetailID }}">
                           {{ csrf_field() }}
                           {{ method_field('DELETE') }}
 

@@ -367,12 +367,12 @@
                   class="dropdown-menu dropdown-menu-end user-dd animated"
                   aria-labelledby="navbarDropdown"
                 >
-                  <a class="dropdown-item" href="javascript:void(0)"
+                 {{--  <a class="dropdown-item" href="javascript:void(0)"
                     ><i class="mdi mdi-account me-1 ms-1"></i> My Profile</a
-                  >
+                  > --}}
                   
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="javascript:void(0)"
+                  <a class="dropdown-item" href="{{ url('logout') }}"
                     ><i class="fa fa-power-off me-1 ms-1"></i> Logout</a
                   >
                  {{--  <div class="dropdown-divider"></div>
@@ -413,23 +413,23 @@
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
-        {{-- <div class="page-breadcrumb">
+        <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Dashboard</h4>
+              <h4 class="page-title">{{ ucwords(@Request::segment(1)) }}</h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('beranda') }}">Beranda</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
-                      Library
+                      {{ ucwords(@Request::segment(1)) }}
                     </li>
                   </ol>
                 </nav>
               </div>
             </div>
           </div>
-        </div> --}}
+        </div>
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
@@ -445,10 +445,10 @@
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-        <footer class="footer text-center">
+        {{-- <footer class="footer text-center">
           Developed by
           <a target="_blank" href="https://www.youtube.com/@YulaikahOte">Yulaikah Ote</a>.
-        </footer>
+        </footer> --}}
         <!-- ============================================================== -->
         <!-- End footer -->
         <!-- ============================================================== -->

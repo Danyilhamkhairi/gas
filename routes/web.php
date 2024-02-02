@@ -8,6 +8,9 @@ use App\Http\Controllers\DetailPembelianController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\DetailPenjualanController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +23,16 @@ use App\Http\Controllers\DetailPenjualanController;
 |
 */
 
-Route::get('/', function () {
-    return view('home.index');
-});
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('logout', [LoginController::class, 'logout']);
+Route::post('/login-proses/', [LoginController::class, 'login_proses']);
+
+
+Route::group(['middleware' => 'cekstatus'], function () {
+
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('beranda', [HomeController::class, 'index']);
 
 Route::resource('pelanggan', PelangganController::class);
 Route::resource('supplier', SupplierController::class);
@@ -39,3 +49,6 @@ Route::resource('penjualan', PenjualanController::class);
 
 Route::post('detailpenjualan', [DetailPenjualanController::class, 'store']);
 Route::delete('detailpenjualan/{id}', [DetailPenjualanController::class, 'destroy']);
+
+Route::resource('user', UserController::class);
+});

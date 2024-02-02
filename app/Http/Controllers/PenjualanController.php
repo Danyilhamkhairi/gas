@@ -66,7 +66,7 @@ class PenjualanController extends Controller
          $detail = DetailPenjualan::where('PenjualanID', $id)->get();
 
          foreach ($detail as $d) {
-            update_min_produk($d->ProdukID, $d->JumlahProduk);
+            update_plus_produk($d->ProdukID, $d->JumlahProduk);
             $hapus_detail = DetailPenjualan::find($d->DetailID);
             $hapus_detail->delete();
          }
