@@ -489,13 +489,15 @@
     <script type="text/javascript">
       $("#data-tabel").DataTable();
 
-      function hapus(){
+
+      $(document).on('click', '.hapus_btn', function(){
+        var id = $(this).attr('data-id');
         var result = confirm("Anda yakin Akan Menghapus Data Ini?");
         if (result) {
             // document.theForm.submit();
-            $("#theForm").submit();
-        }    
-      }
+            $("#theForm_"+id).submit();
+        }  
+    });
     
     </script>
     @yield('js')

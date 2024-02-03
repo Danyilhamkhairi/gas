@@ -41,12 +41,12 @@
                         <td>
                           <a style="float: left;" href="{{ url('user').'/'.@$d->id.'/edit' }}" class="btn btn-warning btn-sm">Edit</a>
 
-                          <form id="theForm" style="float: left; margin-left: 4px" method="POST" action="{{ url('/user').'/'.$d->id }}">
+                          <form id="theForm_{{ @$d->id }}" style="float: left; margin-left: 4px" method="POST" action="{{ url('/user').'/'.$d->id }}">
                                   {{ csrf_field() }}
                                   {{ method_field('DELETE') }}
 
                                   <div class="form-group">
-                                      <input type="button" onclick="hapus();" class="btn btn-danger btn-sm" value="Hapus">
+                                      <input type="button" data-id="{{ @$d->id }}" class="btn btn-danger btn-sm hapus_btn" value="Hapus">
                                   </div>
                               </form>
                         </td>

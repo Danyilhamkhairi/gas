@@ -43,12 +43,12 @@
 
                           <a style="float: left; margin-left: 2px" href="{{ url('penjualan').'/'.@$d->PenjualanID.'/detail' }}" class="btn btn-info btn-sm">Detail</a>
 
-                          <form id="theForm" style="float: left; margin-left: 2px" method="POST" action="{{ url('/penjualan').'/'.$d->PenjualanID }}">
+                          <form id="theForm_{{ @$d->PenjualanID }}" style="float: left; margin-left: 2px" method="POST" action="{{ url('/penjualan').'/'.$d->PenjualanID }}">
                                   {{ csrf_field() }}
                                   {{ method_field('DELETE') }}
 
                                   <div class="form-group">
-                                      <input type="button" onclick="hapus();" class="btn btn-danger btn-sm" value="Hapus">
+                                      <input type="button" data-id="{{ @$d->PenjualanID }}" class="btn btn-danger btn-sm hapus_btn" value="Hapus">
                                   </div>
                               </form>
                         </td>
