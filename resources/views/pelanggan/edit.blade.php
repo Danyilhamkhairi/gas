@@ -13,21 +13,21 @@
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Nama pelanggan</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="NamaPelanggan" value="{{ @$data->NamaPelanggan }}">
+                <input type="text" class="form-control" name="NamaPelanggan" value="{{ @$data->NamaPelanggan }}" required="required">
               </div>
             </div>
 
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Alamat</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="Alamat" value="{{ @$data->Alamat }}">
+                <input type="text" class="form-control" name="Alamat" value="{{ @$data->Alamat }}" required="required">
               </div>
             </div>
 
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Nomor Telepon</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="NomorTelepon" value="{{ @$data->NomorTelepon }}">
+                <input type="text" class="form-control" name="NomorTelepon" value="{{ @$data->NomorTelepon }}" required="required">
               </div>
             </div>
             

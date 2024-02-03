@@ -21,7 +21,7 @@
               </tr>
 
               <tr>
-                <td colspan="3"><button type="submit">Tampilkan data</button></td>
+                <td colspan="3"><button class="btn btn-sm btn-primary" type="submit">Tampilkan data</button></td>
               </tr>
             </table>
 

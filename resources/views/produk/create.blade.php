@@ -12,21 +12,21 @@
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Nama produk</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="NamaProduk">
+                <input type="text" class="form-control" name="NamaProduk" required="required">
               </div>
             </div>
 
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Harga</label>
               <div class="col-sm-9">
-                <input type="number" class="form-control" name="Harga">
+                <input type="number" class="form-control" name="Harga" required="required">
               </div>
             </div>
 
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Stok</label>
               <div class="col-sm-9">
-                <input type="number" class="form-control" name="Stok">
+                <input type="number" class="form-control" name="Stok" required="required">
               </div>
             </div>
             

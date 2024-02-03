@@ -12,21 +12,21 @@
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Nama Supplier</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="NamaSupplier">
+                <input type="text" class="form-control" name="NamaSupplier" required="required">
               </div>
             </div>
 
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Alamat</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="Alamat">
+                <input type="text" class="form-control" name="Alamat" required="required">
               </div>
             </div>
 
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Nomor Telepon</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="NomorTelepon">
+                <input type="text" class="form-control" name="NomorTelepon" required="required">
               </div>
             </div>
             

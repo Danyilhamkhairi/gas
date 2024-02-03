@@ -13,14 +13,14 @@
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Tanggal Pembelian</label>
               <div class="col-sm-9">
-                <input type="date" class="form-control" name="TanggalPembelian" value="{{ @$data->TanggalPembelian }}">
+                <input type="date" class="form-control" name="TanggalPembelian" value="{{ @$data->TanggalPembelian }}" required="required">
               </div>
             </div>
 
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Supplier</label>
               <div class="col-sm-9">
-                <select name="SupplierID" class="form-control">
+                <select name="SupplierID" class="form-control" required="required">
                   <option value="">-- Pilih Supplier --</option>
                   @if (@$supplier!=null)
                     @foreach ($supplier as $s)

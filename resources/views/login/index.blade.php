@@ -60,6 +60,17 @@
               /> KASIRKU</span>
             </div>
             <!-- Form -->
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                  {{session()->get('message') }}
+                </div>
+            @endif
+            @if(session()->has('error'))
+              <div class="alert alert-danger">
+                  {{session()->get('error') }}
+              </div>
+            @endif
+            
             <form
               class="form-horizontal mt-3"
               id="loginform" method="post"

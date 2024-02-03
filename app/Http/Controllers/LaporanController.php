@@ -34,11 +34,11 @@ class LaporanController extends Controller
         if ($dari_tanggal!='' && $sampai_tanggal!='') {
           $data = Penjualan::whereDate('TanggalPenjualan', '>=', $dari_tanggal)->whereDate('TanggalPenjualan', '<=', $sampai_tanggal)->get();
 
-          $nama_file = 'laporan_penjualan '.date('d-m-Y', strtotime($dari_tanggal)).' sd '.date('d-m-Y', strtotime($sampai_tanggal)).'.csv';
+          $nama_file = 'laporan_penjualan '.date('d-m-Y', strtotime($dari_tanggal)).' sd '.date('d-m-Y', strtotime($sampai_tanggal)).'.xlsx';
 
           return (new FastExcel($data))->download($nama_file, function ($d) {
                 return [
-                    'Tanggal Penjualan' => @$d->TanggalPenjualan,
+                    'Tanggal Penjualan' => date('d-m-Y', strtotime(@$d->TanggalPenjualan)),
                     'Nama Pelanggan' => @$d->pelanggan->NamaPelanggan,
                     'Total' => @$d->TotalHarga,
                 ];
@@ -65,11 +65,11 @@ class LaporanController extends Controller
         if ($dari_tanggal!='' && $sampai_tanggal!='') {
           $data = Pembelian::whereDate('TanggalPembelian', '>=', $dari_tanggal)->whereDate('TanggalPembelian', '<=', $sampai_tanggal)->get();
 
-          $nama_file = 'laporan_pembelian '.date('d-m-Y', strtotime($dari_tanggal)).' sd '.date('d-m-Y', strtotime($sampai_tanggal)).'.csv';
+          $nama_file = 'laporan_pembelian '.date('d-m-Y', strtotime($dari_tanggal)).' sd '.date('d-m-Y', strtotime($sampai_tanggal)).'.xlsx';
 
           return (new FastExcel($data))->download($nama_file, function ($d) {
                 return [
-                    'Tanggal Pembelian' => @$d->TanggalPembelian,
+                    'Tanggal Pembelian' => date('d-m-Y', strtotime(@$d->TanggalPembelian)),
                     'Nama Supplier' => @$d->supplier->NamaSupplier,
                     'Total' => @$d->TotalHarga,
                 ];

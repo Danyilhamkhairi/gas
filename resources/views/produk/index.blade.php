@@ -2,6 +2,16 @@
 @section('konten')
   <div class="row">
     <div class="col-md-12 col-sm-12 ">
+        @if(session()->has('message'))
+          <div class="alert alert-success">
+            {{session()->get('message') }}
+          </div>
+      @endif
+      @if(session()->has('error'))
+        <div class="alert alert-danger">
+            {{session()->get('error') }}
+        </div>
+      @endif
         <div class="card">
         <div class="card-body">
           <h5 class="card-title">Data Produk</h5>
