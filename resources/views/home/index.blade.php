@@ -68,7 +68,7 @@
               <div class="card card-hover">
                 <div class="box bg-danger text-center">
                   <h1 class="font-light text-white">
-                    <i class="mdi mdi-border-outside"></i>
+                    <i class="mdi mdi-account-multiple"></i>
                   </h1>
                   <h3 class="text-white">{{ @$total_user }}</h3>
                   <h6 class="text-white">Total User</h6>

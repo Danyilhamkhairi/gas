@@ -11,6 +11,7 @@ use App\Http\Controllers\DetailPenjualanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +52,10 @@ Route::post('detailpenjualan', [DetailPenjualanController::class, 'store']);
 Route::delete('detailpenjualan/{id}', [DetailPenjualanController::class, 'destroy']);
 
 Route::resource('user', UserController::class);
+
+Route::get('laporan_penjualan', [LaporanController::class, 'penjualan']);
+Route::get('laporan_penjualan/excel', [LaporanController::class, 'penjualan_excel']);
+
+Route::get('laporan_pembelian', [LaporanController::class, 'pembelian']);
+Route::get('laporan_pembelian/excel', [LaporanController::class, 'pembelian_excel']);
 });
