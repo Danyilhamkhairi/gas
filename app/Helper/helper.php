@@ -25,6 +25,13 @@ function info_produk($id){
 	return ['harga'=>$harga, 'nama_produk'=>$nama_produk];
 }
 
+function info_user($id){
+	$data = App\Models\User::find($id);
+	$nama = @$data->nama;
+	$level = @$data->level;
+	return ['nama'=>$nama, 'level'=>$level];
+}
+
 
 function update_total_harga_pembelian($id)
 {
