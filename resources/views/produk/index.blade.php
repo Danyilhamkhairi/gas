@@ -24,6 +24,7 @@
                     <th>Nama Produk</th>
                     <th>Harga</th>
                     <th>Stok</th>
+                    <th>Gambar Produk</th>
                     <th>Opsi</th>
                   </tr>
                 </thead>
@@ -38,6 +39,11 @@
                         <td>{{ @$d->NamaProduk; }}</td>
                         <td>{{ rupiah(@$d->Harga); }}</td>
                         <td>{{ @$d->Stok; }}</td>
+                        <td>
+                          @if ($d->GambarProduk)
+                            <img width="100" src="{{ asset('gambar_produk').'/'.@$d->GambarProduk }}">
+                          @endif
+                        </td>
                         <td>
                           <a style="float: left;" href="{{ url('produk').'/'.@$d->ProdukID.'/edit' }}" class="btn btn-warning btn-sm">Edit</a>
 

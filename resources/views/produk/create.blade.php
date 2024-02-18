@@ -4,7 +4,7 @@
     
     <div class="col-md-6">
       <div class="card">
-        <form class="form-horizontal" action="{{ url('produk') }}" method="post">
+        <form class="form-horizontal" action="{{ url('produk') }}" enctype="multipart/form-data" method="post">
           {{ csrf_field() }}
           <div class="card-body">
             <h5 class="card-title">Tambah Produk</h5>
@@ -27,6 +27,13 @@
               <label class="col-sm-3 text-end control-label col-form-label">Stok</label>
               <div class="col-sm-9">
                 <input type="number" class="form-control" name="Stok" required="required">
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-3 text-end control-label col-form-label">Gambar Produk</label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" name="GambarProduk" required="required" accept="image/png, image/gif, image/jpeg">
               </div>
             </div>
             

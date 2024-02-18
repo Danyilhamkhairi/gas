@@ -46,7 +46,7 @@
                                   {{ method_field('DELETE') }}
 
                                   <div class="form-group">
-                                      <input type="button" data-id="{{ @$d->PelangganID }}" class="btn btn-danger btn-sm" value="Hapus">
+                                      <input type="button" data-id="{{ @$d->PelangganID }}" class="btn btn-danger btn-sm hapus_btn" value="Hapus">
                                   </div>
                               </form>
                         </td>
