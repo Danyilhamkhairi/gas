@@ -27,9 +27,7 @@
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Stok</label>
               <div class="col-sm-9">
-                 @if ($data->GambarProduk)
-                            <img width="100" src="{{ asset('gambar_produk').'/'.@$d->GambarProduk }}">
-                          @endif
+                 
                 <input type="number" class="form-control" name="Stok" value="{{ @$data->Stok }}" >
               </div>
             </div>
@@ -37,6 +35,9 @@
              <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Gambar Produk</label>
               <div class="col-sm-9">
+                @if ($data->GambarProduk)
+                    <img width="200" src="{{ asset('gambar_produk').'/'.@$data->GambarProduk }}">
+                  @endif
                 <input type="file" class="form-control" name="GambarProduk" required="required" accept="image/png, image/gif, image/jpeg">
               </div>
             </div>
