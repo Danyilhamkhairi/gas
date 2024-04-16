@@ -39,7 +39,7 @@ class LaporanController extends Controller
           return (new FastExcel($data))->download($nama_file, function ($d) {
                 return [
                     'Tanggal Penjualan' => date('d-m-Y', strtotime(@$d->TanggalPenjualan)),
-                    'Nama Pelanggan' => @$d->pelanggan->NamaPelanggan,
+                    'Nama Pembeli' => @$d->Pembeli .' '. @$d->pelanggan->NamaPelanggan,
                     'Total' => @$d->TotalHarga,
                 ];
             });

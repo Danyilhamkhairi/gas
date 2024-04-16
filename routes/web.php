@@ -45,6 +45,9 @@ Route::resource('pembelian', PembelianController::class);
 Route::post('detailpembelian', [DetailPembelianController::class, 'store']);
 Route::delete('detailpembelian/{id}', [DetailPembelianController::class, 'destroy']);
 
+Route::get('penjualan/struk/{id}', [PenjualanController::class, 'struk']);
+Route::post('penjualan/tunai/{id}', [PenjualanController::class, 'tunai']);
+
 Route::get('penjualan/{id}/detail', [PenjualanController::class, 'detail']);
 Route::resource('penjualan', PenjualanController::class);
 

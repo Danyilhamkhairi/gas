@@ -32,7 +32,7 @@
                 <tr>
                   <th>No</th>
                   <th>Tanggal Penjualan</th>
-                  <th>Nama Pelanggan</th>
+                  <th>Nama Pembeli</th>
                   <th>Total</th>
                 </tr>
                 @php
@@ -42,7 +42,7 @@
                   <tr>
                     <td>{{ $no++ }}</td>
                      <td>{{ tanggal_indo(@$d->TanggalPenjualan); }}</td>
-                      <td>{{ @$d->pelanggan->NamaPelanggan; }}</td>
+                      <td>{{ @$d->Pembeli .' '. @$d->pelanggan->NamaPelanggan; }}</td>
                       <td>{{ rupiah(@$d->TotalHarga) }}</td>
                   </tr>
               @endforeach

@@ -16,9 +16,19 @@
             </div>
 
             <div class="form-group row">
+              <label class="col-sm-3 text-end control-label col-form-label">Nama Pembeli</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" name="Pembeli">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-12 control-label col-form-label"><small>Atau Pilih Pelanggan</small></label>
+            </div>
+            <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Pelanggan</label>
               <div class="col-sm-7">
-                <select name="PelangganID" class="form-control" required="required">
+                <select name="PelangganID" class="form-control">
                   <option value="">-- Pilih Pelanggan --</option>
                   @if (@$pelanggan!=null)
                     @foreach ($pelanggan as $s)
@@ -31,6 +41,9 @@
                 <a href="{{ url('pelanggan/create') }}" class="btn btn-info btn-sm">Baru</a>
               </div>
             </div>
+
+            
+
             
           </div>
           <div class="border-top">

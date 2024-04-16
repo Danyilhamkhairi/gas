@@ -29,6 +29,7 @@ class PenjualanController extends Controller
    	$simpan = new Penjualan;
    	$simpan->TanggalPenjualan = $req->TanggalPenjualan;  
       $simpan->PelangganID = $req->PelangganID;
+      $simpan->Pembeli = $req->Pembeli;
    	$save = $simpan->save();
    	if($save){
          return redirect()->to($this->dir.'')->with('message','Data berhasil ditambahkan');
@@ -49,6 +50,7 @@ class PenjualanController extends Controller
       $simpan = Penjualan::find($id);
       $simpan->TanggalPenjualan = $req->TanggalPenjualan;  
       $simpan->PelangganID = $req->PelangganID;
+      $simpan->Pembeli = $req->Pembeli;
       $save = $simpan->save();
       if($save){
          return redirect()->to($this->dir.'')->with('message','Data berhasil dirubah');
@@ -84,5 +86,26 @@ class PenjualanController extends Controller
       $produk = Produk::all();
       $detail = DetailPenjualan::where('PenjualanID', $id)->get();
       return view($this->dir.'.detail', compact('data_penjualan', 'produk', 'detail'));
+   }
+
+      public function tunai(Request $req, $id)
+   {
+      $data_penjualan = Penjualan::find($id);
+      $kembali = ($req->tunai - $data_penjualan->TotalHarga);
+      $data_penjualan->tunai = $req->tunai;
+      $data_penjualan->kembali = $kembali;
+      $save = $data_penjualan->save();
+      if($save){
+         return redirect()->back()->with('message','Data berhasil disimpan');
+      }else {
+         return redirect()->back()->with('error','Data gagal disimpan');
+      }
+   }
+
+   public function struk(Request $req, $id)
+   {
+      $data_penjualan = Penjualan::find($id);
+      $detail = DetailPenjualan::where('PenjualanID', $id)->get();
+      return view('penjualan.struk', compact('data_penjualan', 'detail'));
    }
 }

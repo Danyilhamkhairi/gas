@@ -22,7 +22,7 @@
                   <tr>
                     <th>No</th>
                     <th>Tanggal Penjualan</th>
-                    <th>Nama Pelanggan</th>
+                    <th>Pembeli</th>
                     <th>Total Harga</th>
                     <th>Opsi</th>
                   </tr>
@@ -36,7 +36,7 @@
                       <tr>
                         <td>{{ @$no++; }}</td>
                         <td>{{ tanggal_indo(@$d->TanggalPenjualan); }}</td>
-                        <td>{{ @$d->pelanggan->NamaPelanggan; }}</td>
+                        <td>{{ @$d->Pembeli .' '. @$d->pelanggan->NamaPelanggan; }}</td>
                         <td>{{ rupiah(@$d->TotalHarga) }}</td>
                         <td>
                           <a style="float: left;" href="{{ url('penjualan').'/'.@$d->PenjualanID.'/edit' }}" class="btn btn-warning btn-sm">Edit</a>

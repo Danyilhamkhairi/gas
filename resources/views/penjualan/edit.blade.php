@@ -18,6 +18,17 @@
             </div>
 
             <div class="form-group row">
+              <label class="col-sm-3 text-end control-label col-form-label">Nama Pembeli</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" name="Pembeli" value="{{ @$data->Pembeli }}">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-12 control-label col-form-label"><small>Atau Pilih Pelanggan</small></label>
+            </div>
+
+            <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Pelanggan</label>
               <div class="col-sm-9">
                 <select name="PelangganID" class="form-control" required="required">
