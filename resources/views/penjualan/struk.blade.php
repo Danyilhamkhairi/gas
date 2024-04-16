@@ -20,7 +20,9 @@
     <center>
         <b>Kasirku</b>
         <br>
-        {{ @date('d-m-Y H:i') }}
+        Nama Pembeli : {{ @$data_penjualan->Pembeli .' '.@$data_penjualan->pelanggan->NamaPelanggan }}
+        <br>
+        Tanggal : {{ @date('d-m-Y H:i') }}
         <hr>
     <table style="font-size: 10px;" cellpadding="2px">
         <thead>

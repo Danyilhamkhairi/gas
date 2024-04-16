@@ -12,9 +12,9 @@
               <td>{{ tanggal_indo(@$data_penjualan->TanggalPenjualan) }}</td>
             </tr>
             <tr>
-              <td>Nama Pelanggan</td>
+              <td>Nama Pembeli</td>
               <td>:</td>
-              <td>{{ @$data_penjualan->pelanggan->NamaPelanggan }}</td> 
+              <td>{{ @$data_penjualan->Pembeli .' '.@$data_penjualan->pelanggan->NamaPelanggan }}</td> 
             </tr>
           </table>
         </div>
@@ -119,42 +119,38 @@
     <div class="col-md-5">
       <div class="card">
         <div class="card-body">
-          {{-- <h5 class="card-title">
-            Total 
-          </h5>
-          <h2>{{ rupiah(@$total_semua) }}</h2> --}}
           <form action="{{ url('penjualan/tunai/').'/'.@$data_penjualan->PenjualanID }}" method="post">
             {{ csrf_field() }}
-          <table class="table table-sniped">
-            <tr>
-              <th>Total</th>
-              <th>{{ rupiah(@$total_semua) }}</th>
-            </tr>
+            <table class="table table-sniped">
+              <tr>
+                <th>Total</th>
+                <th>{{ rupiah(@$total_semua) }}</th>
+              </tr>
 
-            <tr>
-              <th>Tunai</th>
-              <td><input min="{{ @$total_semua }}" type="number" class="form-control" name="tunai" value="{{ @$data_penjualan->tunai }}" required></td>
-            </tr>
+              <tr>
+                <th>Tunai</th>
+                <td><input min="{{ @$total_semua }}" type="number" class="form-control" name="tunai" value="{{ @$data_penjualan->tunai }}" required></td>
+              </tr>
 
-            <tr>
-              <th></th>
-              <td >
-                <button type="submit"class="btn btn-primary">
-                  Proses
-                </button>
-              </td>
-            </tr>
+              <tr>
+                <th></th>
+                <td >
+                  <button type="submit"class="btn btn-primary">
+                    Proses
+                  </button>
+                </td>
+              </tr>
 
-            <tr>
-              <th>Kembali</th>
-              <td>{{ rupiah(@$data_penjualan->kembali) }}</td>
-            </tr>
-            <tr>
-              <th colspan="2">
-                <a target="_blank" class="btn btn-sm btn-danger" href="{{ url('penjualan/struk/').'/'.@$data_penjualan->PenjualanID }}"><i class="fa fa-file-pdf"></i> Cetak Struk</a>
-              </th>
-            </tr>
-          </table>
+              <tr>
+                <th>Kembali</th>
+                <td>{{ rupiah(@$data_penjualan->kembali) }}</td>
+              </tr>
+              <tr>
+                <th colspan="2">
+                  <a target="_blank" class="btn btn-sm btn-danger" href="{{ url('penjualan/struk/').'/'.@$data_penjualan->PenjualanID }}"><i class="fa fa-file-pdf"></i> Cetak Struk</a>
+                </th>
+              </tr>
+            </table>
           </form>
         </div>
       </div>
