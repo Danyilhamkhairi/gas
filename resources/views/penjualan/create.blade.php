@@ -11,7 +11,7 @@
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Tanggal Penjualan</label>
               <div class="col-sm-6">
-                <input type="date" class="form-control" name="TanggalPenjualan" required="required">
+                <input value="{{ date('Y-m-d') }}" type="date" class="form-control" name="TanggalPenjualan" required="required">
               </div>
             </div>
 
@@ -28,7 +28,7 @@
             <div class="form-group row">
               <label class="col-sm-3 text-end control-label col-form-label">Pelanggan</label>
               <div class="col-sm-7">
-                <select name="PelangganID" class="form-control">
+                <select name="PelangganID" class="form-control select2">
                   <option value="">-- Pilih Pelanggan --</option>
                   @if (@$pelanggan!=null)
                     @foreach ($pelanggan as $s)

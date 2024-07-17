@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Apr 2024 pada 08.31
+-- Waktu pembuatan: 16 Jul 2024 pada 11.27
 -- Versi server: 10.4.16-MariaDB
 -- Versi PHP: 7.4.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kasir_laravel`
+-- Database: `kasir_gas`
 --
 
 -- --------------------------------------------------------
@@ -34,6 +34,13 @@ CREATE TABLE `detailpembelian` (
   `JumlahProduk` int(11) DEFAULT NULL,
   `Subtotal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `detailpembelian`
+--
+
+INSERT INTO `detailpembelian` (`DetailID`, `PembelianID`, `ProdukID`, `JumlahProduk`, `Subtotal`) VALUES
+(10, 3, 2, 1, 50000);
 
 -- --------------------------------------------------------
 
@@ -58,7 +65,8 @@ INSERT INTO `detailpenjualan` (`DetailID`, `PenjualanID`, `ProdukID`, `JumlahPro
 (2, 1, 2, 2, 100000),
 (3, 2, 2, 1, 50000),
 (4, 3, 2, 1, 50000),
-(5, 4, 2, 1, 50000);
+(5, 4, 2, 1, 50000),
+(6, 1, 2, 1, 50000);
 
 -- --------------------------------------------------------
 
@@ -78,7 +86,8 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`PelangganID`, `NamaPelanggan`, `Alamat`, `NomorTelepon`) VALUES
-(1, 'Kartika Sari', 'Desa Soditan Lasem', '0895673452167');
+(1, 'Kartika Sari', 'Desa Soditan Lasem', '0895673452167'),
+(2, 'saidan', 'sendang coyo ok', '0895673452167');
 
 -- --------------------------------------------------------
 
@@ -98,7 +107,8 @@ CREATE TABLE `pembelian` (
 --
 
 INSERT INTO `pembelian` (`PembelianID`, `TanggalPembelian`, `TotalHarga`, `SupplierID`) VALUES
-(2, '2024-01-31', 0, 3);
+(2, '2024-01-31', 0, 3),
+(3, '2024-04-23', 50000, 3);
 
 -- --------------------------------------------------------
 
@@ -121,10 +131,11 @@ CREATE TABLE `penjualan` (
 --
 
 INSERT INTO `penjualan` (`PenjualanID`, `TanggalPenjualan`, `TotalHarga`, `PelangganID`, `Pembeli`, `tunai`, `kembali`) VALUES
-(1, '2024-02-01', 150000, 1, NULL, 200000, 50000),
+(1, '2024-02-01', 200000, 1, NULL, 200000, 50000),
 (2, '2024-02-28', 50000, NULL, 'bidin', NULL, NULL),
 (3, '2024-02-29', 50000, NULL, 'ote', NULL, NULL),
-(4, '2024-02-28', 50000, NULL, 'rohmat zaenal abidin', NULL, NULL);
+(4, '2024-02-28', 50000, NULL, 'rohmat zaenal abidin', NULL, NULL),
+(6, '2024-04-23', NULL, NULL, '-', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -136,6 +147,8 @@ CREATE TABLE `produk` (
   `ProdukID` int(11) NOT NULL,
   `NamaProduk` varchar(50) DEFAULT NULL,
   `Harga` int(11) DEFAULT NULL,
+  `harga_beli` int(11) DEFAULT NULL,
+  `harga_jual` int(11) DEFAULT NULL,
   `Stok` int(11) DEFAULT NULL,
   `GambarProduk` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -144,9 +157,9 @@ CREATE TABLE `produk` (
 -- Dumping data untuk tabel `produk`
 --
 
-INSERT INTO `produk` (`ProdukID`, `NamaProduk`, `Harga`, `Stok`, `GambarProduk`) VALUES
-(2, 'Mouse Wireles Merk Robot', 50000, 0, '1708317405_screencapture-192-168-77-252-mutu-public-indikator-mutu-2024-02-01-12_32_58.png'),
-(3, 'Headset Gojodoq', 60000, 100, NULL);
+INSERT INTO `produk` (`ProdukID`, `NamaProduk`, `Harga`, `harga_beli`, `harga_jual`, `Stok`, `GambarProduk`) VALUES
+(2, 'Mouse Wireles Merk Robot', 50000, NULL, NULL, 0, '1708317405_screencapture-192-168-77-252-mutu-public-indikator-mutu-2024-02-01-12_32_58.png'),
+(3, 'Headset Gojodoq', 60000, NULL, NULL, 100, NULL);
 
 -- --------------------------------------------------------
 
@@ -166,7 +179,8 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`SupplierID`, `NamaSupplier`, `Alamat`, `NomorTelepon`) VALUES
-(3, 'Pak Rohmat Zaenal Abidin', 'RT02 RW02 Gedangan Rembang', '081215416084');
+(3, 'Pak Rohmat Zaenal Abidin', 'RT02 RW02 Gedangan Rembang', '081215416084'),
+(4, 'Sugiono', 'Jawa tengah', '089567345216');
 
 -- --------------------------------------------------------
 
@@ -187,9 +201,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nama`, `username`, `password`, `level`) VALUES
-(1, 'Rohmat Zaenal Abidin', 'abidin', '$2y$10$nWGB6ziEj2sogqUwmwzhju5THY7IpB.RR5UgYioDgQW8pizKuoYzS', 'administrator'),
-(2, 'petugas', 'petugas', '$2y$10$bTOzObfg1a2ow4TiVDXbB.C/NDX2f36gDjVKdl3FQWJ1RPeLIIczK', 'petugas'),
-(3, 'Administrator', 'admin', '$2y$10$b6p7Ri03bMbp1IGCMdpfD.1M.7Brtc7eydo.n9aZR7YyBI7/ZzSd.', 'administrator');
+(1, 'Rohmat Zaenal Abidin', 'abidin', '$2y$10$JPfLtsRsh4oOj0Eqyk.HDOkPqVuuiTMPx1Gzj80gxtT8ltJyLGVa.', 'owner'),
+(2, 'Ali', 'kasir', '$2y$10$WqTCezHUpAUEIIlo4FGTUeDl4KhoUjgjOIqFycmASllrnkztoinMi', 'kasir'),
+(3, 'Lili', 'admin', '$2y$10$/jX4.EY2gLJPpMSGlt9X9uRuSsbOTJWwOHWvIeXFQOFITnMCqKCLe', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -256,43 +270,43 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `detailpembelian`
 --
 ALTER TABLE `detailpembelian`
-  MODIFY `DetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `DetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `detailpenjualan`
 --
 ALTER TABLE `detailpenjualan`
-  MODIFY `DetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `DetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `PelangganID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `PelangganID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `PembelianID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `PembelianID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `PenjualanID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `PenjualanID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `ProdukID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ProdukID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

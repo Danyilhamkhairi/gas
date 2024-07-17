@@ -17,7 +17,7 @@ class DetailPenjualanController extends Controller
       $simpan->ProdukID = $req->ProdukID; 
       $simpan->JumlahProduk = $req->JumlahProduk; 
 
-      $harga = info_produk($req->ProdukID)['harga'];
+      $harga = info_produk($req->ProdukID)['harga_jual'];
       $Subtotal = $harga * $req->JumlahProduk;
       $simpan->Subtotal = $Subtotal; 
    	$save = $simpan->save();      

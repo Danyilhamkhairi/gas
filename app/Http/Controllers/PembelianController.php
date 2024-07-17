@@ -30,8 +30,9 @@ class PembelianController extends Controller
    	$simpan->TanggalPembelian = $req->TanggalPembelian;  
       $simpan->SupplierID = $req->SupplierID;
    	$save = $simpan->save();
+      $PembelianID = $simpan->PembelianID;
    	if($save){
-         return redirect()->to($this->dir.'')->with('message','Data berhasil ditambahkan');
+         return redirect()->to($this->dir.'/'.$PembelianID.'/detail')->with('message','Data berhasil ditambahkan');
    	}else {
          return redirect()->back()->with('error','Data gagal ditambahkan');
    	}

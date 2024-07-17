@@ -17,9 +17,16 @@
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-3 text-end control-label col-form-label">Harga</label>
+              <label class="col-sm-3 text-end control-label col-form-label">Harga Beli</label>
               <div class="col-sm-9">
-                <input type="number" class="form-control" name="Harga" required="required">
+                <input type="number" min="1" class="form-control" name="harga_beli" required="required">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-3 text-end control-label col-form-label">Harga Jual</label>
+              <div class="col-sm-9">
+                <input type="number" min="1" class="form-control" name="harga_jual" required="required">
               </div>
             </div>
 

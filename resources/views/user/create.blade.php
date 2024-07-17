@@ -35,8 +35,9 @@
               <div class="col-sm-9">
                 <select class="form-control" name="level" required="required">
                   <option value="">-- Pilih User Level --</option>
-                  <option value="administrator">administrator</option>
-                  <option value="petugas">petugas</option>
+                  <option value="owner">owner</option>
+                  <option value="admin">admin</option>
+                  <option value="kasir">kasir</option>
                 </select>
               </div>
             </div>

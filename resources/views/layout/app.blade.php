@@ -356,6 +356,7 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
+                  {{ info_user(session('user_id'))['nama']. ' ('.info_user(session('user_id'))['level'].')' }}
                   <img
                     src="{{ asset('assets/images/users/1.jpg') }}"
                     alt="user"
@@ -446,8 +447,7 @@
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer text-center">
-          Developed by
-          <b>Reza</b>
+         <small>v2</small>
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->
@@ -486,6 +486,11 @@
     <script src="{{ asset('assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
     <script src="{{ asset('dist/js/pages/chart/chart-page-init.js') }}"></script>
     <script src="{{ asset('assets/extra-libs/DataTables/datatables.min.js') }}"></script>
+
+
+    <link href="{{ asset('assets/select2/select2.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('assets/select2/select2.min.js') }}"></script>
+
     <script type="text/javascript">
       $("#data-tabel").DataTable();
 
@@ -497,6 +502,11 @@
             // document.theForm.submit();
             $("#theForm_"+id).submit();
         }  
+    });
+
+
+      $(document).ready(function() {
+        $('.select2').select2();
     });
     
     </script>

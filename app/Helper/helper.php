@@ -20,9 +20,10 @@ function tanggal_indo($tgl)
 
 function info_produk($id){
 	$data = App\Models\Produk::find($id);
-	$harga = @$data->Harga;
+	$harga_beli = @$data->harga_beli;
+	$harga_jual = @$data->harga_jual;
 	$nama_produk = @$data->NamaProduk;
-	return ['harga'=>$harga, 'nama_produk'=>$nama_produk];
+	return ['harga_beli'=>$harga_beli, 'harga_jual'=>$harga_jual, 'nama_produk'=>$nama_produk];
 }
 
 function info_user($id){

@@ -36,8 +36,9 @@
               <div class="col-sm-9">
                 <select class="form-control" name="level" required="required">
                   <option value="">-- Pilih User Level --</option>
-                  <option {{ @$data->level == 'administrator' ? 'selected' : '' }} value="administrator">administrator</option>
-                  <option {{ @$data->level == 'petugas' ? 'selected' : '' }} value="petugas">petugas</option>
+                  <option {{ @$data->level == 'owner' ? 'selected' : '' }} value="owner">owner</option>
+                  <option {{ @$data->level == 'admin' ? 'selected' : '' }} value="admin">admin</option>
+                  <option {{ @$data->level == 'kasir' ? 'selected' : '' }} value="kasir">kasir</option>
                 </select>
               </div>
             </div>

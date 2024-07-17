@@ -26,13 +26,20 @@ class PenjualanController extends Controller
 
    public function store(Request $req)
    {
+      if($req->Pembeli!=''){
+         $new = new Pelanggan;
+         $new->NamaPelanggan = $req->Pembeli;
+         $new->save();
+      }
+
    	$simpan = new Penjualan;
    	$simpan->TanggalPenjualan = $req->TanggalPenjualan;  
       $simpan->PelangganID = $req->PelangganID;
       $simpan->Pembeli = $req->Pembeli;
    	$save = $simpan->save();
+      $PenjualanID = $simpan->PenjualanID;
    	if($save){
-         return redirect()->to($this->dir.'')->with('message','Data berhasil ditambahkan');
+         return redirect()->to($this->dir.'/'.$PenjualanID.'/detail');
    	}else {
          return redirect()->back()->with('error','Data gagal ditambahkan');
    	}

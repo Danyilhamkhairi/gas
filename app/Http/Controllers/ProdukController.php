@@ -35,7 +35,8 @@ class ProdukController extends Controller
 
    	$simpan = new Produk;
    	$simpan->NamaProduk = $req->NamaProduk;  
-      $simpan->Harga = $req->Harga;   
+      $simpan->harga_beli = $req->harga_beli;
+      $simpan->harga_jual = $req->harga_jual;   
       $simpan->Stok = $req->Stok;
       if($file){
          $simpan->GambarProduk = $nama_file;    
@@ -72,7 +73,8 @@ class ProdukController extends Controller
 
       $simpan = Produk::find($id);
       $simpan->NamaProduk = $req->NamaProduk;  
-      $simpan->Harga = $req->Harga;   
+      $simpan->harga_beli = $req->harga_beli;
+      $simpan->harga_jual = $req->harga_jual;  
       $simpan->Stok = $req->Stok;
       if($file){
          $simpan->GambarProduk = $nama_file;    

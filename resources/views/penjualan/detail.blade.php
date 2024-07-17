@@ -35,7 +35,7 @@
             <div class="col-md-6">
               <label class=" text-end control-label col-form-label">Nama Produk</label>
               
-                <select class="form-control" name="ProdukID" required="required">
+                <select class="form-control select2" name="ProdukID" required="required">
                   <option value="">-- Pilih Produk --</option>
                   @if (@$produk!=null)
                     @foreach ($produk as $p)
@@ -75,7 +75,7 @@
               <tr>
                 <th>No</th>
                 <th>Nama Produk</th>
-                <th>Harga produk</th>
+                <th>Harga Jual</th>
                 <th>Jumlah</th>
                 <th>Subtotal</th>
                 <th>Opsi</th>
@@ -94,7 +94,7 @@
                   <tr>
                     <td>{{ @$no++ }}</td>
                     <td>{{ @$d->produk->NamaProduk }}</td>
-                    <td>{{ rupiah(@$d->produk->Harga) }}</td>
+                    <td>{{ rupiah(@$d->produk->harga_jual) }}</td>
                     <td>{{ @$d->JumlahProduk }}</td>
                     <td>{{ rupiah(@$d->Subtotal) }}</td>
                     <td>

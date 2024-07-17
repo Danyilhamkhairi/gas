@@ -22,7 +22,8 @@
                   <tr>
                     <th>No</th>
                     <th>Nama Produk</th>
-                    <th>Harga</th>
+                    <th>Harga Beli</th>
+                    <th>Harga Jual</th>
                     <th>Stok</th>
                     <th>Gambar Produk</th>
                     <th>Opsi</th>
@@ -37,7 +38,8 @@
                       <tr>
                         <td>{{ @$no++; }}</td>
                         <td>{{ @$d->NamaProduk; }}</td>
-                        <td>{{ rupiah(@$d->Harga); }}</td>
+                        <td>{{ rupiah(@$d->harga_beli); }}</td>
+                        <td>{{ rupiah(@$d->harga_jual); }}</td>
                         <td>{{ @$d->Stok; }}</td>
                         <td>
                           @if ($d->GambarProduk)

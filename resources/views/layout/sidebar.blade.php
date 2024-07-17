@@ -11,39 +11,62 @@
                   ><span class="hide-menu">Dashboard</span></a
                 >
               </li>
-
-              <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('pelanggan') }}" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Pelanggan</span></a>
-              </li>
               
-              <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('penjualan') }}" aria-expanded="false"><i class="mdi mdi-sale"></i><span class="hide-menu">Penjualan</span></a>
-              </li>
-
-              <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('pembelian') }}" aria-expanded="false"><i class="mdi mdi-shopping"></i><span class="hide-menu">Pembelian</span></a>
-              </li>
-
-              <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('produk') }}" aria-expanded="false"><i class="mdi mdi-playlist-check"></i><span class="hide-menu">Produk</span></a>
-              </li>
-
-              <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('supplier') }}" aria-expanded="false"><i class="mdi mdi-account-star"></i><span class="hide-menu">Supplier</span></a>
-              </li>
-
-              @if (session('level') == 'administrator')
-              <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('user') }}" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">User</span></a>
-              </li>
+              {{-- menu kasir --}}
+              @if (session('level') == 'kasir')
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('pelanggan') }}" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Pelanggan</span></a>
+                </li>
                 
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('penjualan') }}" aria-expanded="false"><i class="mdi mdi-sale"></i><span class="hide-menu">Penjualan</span></a>
+                </li>
               @endif
 
-              
-              
+              {{-- menu admin --}}
+              @if (session('level') == 'admin')
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('pembelian') }}" aria-expanded="false"><i class="mdi mdi-shopping"></i><span class="hide-menu">Pembelian</span></a>
+                </li>
 
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('produk') }}" aria-expanded="false"><i class="mdi mdi-playlist-check"></i><span class="hide-menu">Produk</span></a>
+                </li>
+
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('supplier') }}" aria-expanded="false"><i class="mdi mdi-account-star"></i><span class="hide-menu">Supplier</span></a>
+                </li>
+              @endif
+
+
+              @if (session('level') == 'owner')
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('pelanggan') }}" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Pelanggan</span></a>
+                </li>
+                
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('penjualan') }}" aria-expanded="false"><i class="mdi mdi-sale"></i><span class="hide-menu">Penjualan</span></a>
+                </li>
+
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('pembelian') }}" aria-expanded="false"><i class="mdi mdi-shopping"></i><span class="hide-menu">Pembelian</span></a>
+                </li>
+
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('produk') }}" aria-expanded="false"><i class="mdi mdi-playlist-check"></i><span class="hide-menu">Produk</span></a>
+                </li>
+
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('supplier') }}" aria-expanded="false"><i class="mdi mdi-account-star"></i><span class="hide-menu">Supplier</span></a>
+                </li>
+
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('user') }}" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">User</span></a>
+                </li>
+
+              @endif
               
-              
+                
             </ul>
           </nav>
           <!-- End Sidebar navigation -->
