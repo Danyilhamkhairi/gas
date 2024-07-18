@@ -21,7 +21,7 @@
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>Nama Pelanggan</th>
+                    <th>Nomor Kartu Keluarga</th>
                     <th>Alamat</th>
                     <th>Nomor Telepon</th>
                     <th>Opsi</th>
@@ -34,10 +34,10 @@
                   @endphp
                     @foreach ($data as $d)
                       <tr>
-                        <td>{{ @$no++; }}</td>
-                        <td>{{ @$d->NamaPelanggan; }}</td>
-                        <td>{{ @$d->Alamat; }}</td>
-                        <td>{{ @$d->NomorTelepon; }}</td>
+                        <td>{{ @$no++ }}</td>
+                        <td>{{ @$d->NamaPelanggan }}</td>
+                        <td>{{ @$d->Alamat }}</td>
+                        <td>{{ @$d->NomorTelepon }}</td>
                         <td>
                           <a style="float: left;" href="{{ url('pelanggan').'/'.@$d->PelangganID.'/edit' }}" class="btn btn-warning btn-sm">Edit</a>
 

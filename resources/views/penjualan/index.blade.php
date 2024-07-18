@@ -24,7 +24,9 @@
                     <th>Tanggal Penjualan</th>
                     <th>Pembeli</th>
                     <th>Total Harga</th>
-                    <th>Opsi</th>
+                    @if (session('level') == 'owner')
+                      <th>Opsi</th>
+                    @endif
                   </tr>
                 </thead>
                 <tbody>
@@ -34,11 +36,13 @@
                   @endphp
                     @foreach ($data as $d)
                       <tr>
-                        <td>{{ @$no++; }}</td>
-                        <td>{{ tanggal_indo(@$d->TanggalPenjualan); }}</td>
-                        <td>{{ @$d->Pembeli .' '. @$d->pelanggan->NamaPelanggan; }}</td>
+                        <td>{{ @$no++ }}</td>
+                        <td>{{ tanggal_indo(@$d->TanggalPenjualan) }}</td>
+                        <td>{{ @$d->Pembeli .' '. @$d->pelanggan->NamaPelanggan }}</td>
                         <td>{{ rupiah(@$d->TotalHarga) }}</td>
-                        <td>
+                        
+                          @if (session('level') == 'owner')
+                          <td>
                           <a style="float: left;" href="{{ url('penjualan').'/'.@$d->PenjualanID.'/edit' }}" class="btn btn-warning btn-sm">Edit</a>
 
                           <a style="float: left; margin-left: 2px" href="{{ url('penjualan').'/'.@$d->PenjualanID.'/detail' }}" class="btn btn-info btn-sm">Detail</a>
@@ -50,8 +54,12 @@
                                   <div class="form-group">
                                       <input type="button" data-id="{{ @$d->PenjualanID }}" class="btn btn-danger btn-sm hapus_btn" value="Hapus">
                                   </div>
-                              </form>
-                        </td>
+                            </form>
+
+                            </td>
+                          @endif
+                         
+                        
                       </tr>
                     @endforeach
                   @endif

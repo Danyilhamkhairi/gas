@@ -34,9 +34,9 @@
                   @endphp
                     @foreach ($data as $d)
                       <tr>
-                        <td>{{ @$no++; }}</td>
-                        <td>{{ tanggal_indo(@$d->TanggalPembelian); }}</td>
-                        <td>{{ @$d->supplier->NamaSupplier; }}</td>
+                        <td>{{ @$no++ }}</td>
+                        <td>{{ tanggal_indo(@$d->TanggalPembelian) }}</td>
+                        <td>{{ @$d->supplier->NamaSupplier }}</td>
                         <td>{{ rupiah(@$d->TotalHarga) }}</td>
                         <td>
                           <a style="float: left;" href="{{ url('pembelian').'/'.@$d->PembelianID.'/edit' }}" class="btn btn-warning btn-sm">Edit</a>

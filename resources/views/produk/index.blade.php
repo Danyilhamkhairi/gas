@@ -36,11 +36,11 @@
                   @endphp
                     @foreach ($data as $d)
                       <tr>
-                        <td>{{ @$no++; }}</td>
-                        <td>{{ @$d->NamaProduk; }}</td>
-                        <td>{{ rupiah(@$d->harga_beli); }}</td>
-                        <td>{{ rupiah(@$d->harga_jual); }}</td>
-                        <td>{{ @$d->Stok; }}</td>
+                        <td>{{ @$no++ }}</td>
+                        <td>{{ @$d->NamaProduk }}</td>
+                        <td>{{ rupiah(@$d->harga_beli) }}</td>
+                        <td>{{ rupiah(@$d->harga_jual) }}</td>
+                        <td>{{ @$d->Stok }}</td>
                         <td>
                           @if ($d->GambarProduk)
                             <img width="100" src="{{ asset('gambar_produk').'/'.@$d->GambarProduk }}">

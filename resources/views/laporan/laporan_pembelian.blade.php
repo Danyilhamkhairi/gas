@@ -41,8 +41,8 @@
                 @foreach($data as $d)
                   <tr>
                     <td>{{ $no++ }}</td>
-                     <td>{{ tanggal_indo(@$d->TanggalPembelian); }}</td>
-                      <td>{{ @$d->supplier->NamaSupplier; }}</td>
+                     <td>{{ tanggal_indo(@$d->TanggalPembelian) }}</td>
+                      <td>{{ @$d->supplier->NamaSupplier }}</td>
                       <td>{{ rupiah(@$d->TotalHarga) }}</td>
                   </tr>
               @endforeach

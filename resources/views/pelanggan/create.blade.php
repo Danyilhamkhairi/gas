@@ -20,7 +20,7 @@
             <h5 class="card-title">Tambah Pelanggan Baru</h5>
             <br>
             <div class="form-group row">
-              <label class="col-sm-3 text-end control-label col-form-label">Nama Pelanggan</label>
+              <label class="col-sm-3 text-end control-label col-form-label">No Kartu Keluarga</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" required="required" name="NamaPelanggan">
               </div>

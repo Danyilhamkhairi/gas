@@ -14,9 +14,9 @@
               
               {{-- menu kasir --}}
               @if (session('level') == 'kasir')
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                   <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('pelanggan') }}" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Pelanggan</span></a>
-                </li>
+                </li> --}}
                 
                 <li class="sidebar-item">
                   <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('penjualan') }}" aria-expanded="false"><i class="mdi mdi-sale"></i><span class="hide-menu">Penjualan</span></a>
@@ -25,6 +25,9 @@
 
               {{-- menu admin --}}
               @if (session('level') == 'admin')
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('pelanggan') }}" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Pelanggan</span></a>
+                </li>
                 <li class="sidebar-item">
                   <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('pembelian') }}" aria-expanded="false"><i class="mdi mdi-shopping"></i><span class="hide-menu">Pembelian</span></a>
                 </li>

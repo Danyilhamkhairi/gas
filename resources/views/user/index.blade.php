@@ -34,10 +34,10 @@
                   @endphp
                     @foreach ($data as $d)
                       <tr>
-                        <td>{{ @$no++; }}</td>
-                        <td>{{ @$d->nama; }}</td>
-                        <td>{{ @$d->username; }}</td>
-                        <td>{{ @$d->level; }}</td>
+                        <td>{{ @$no++ }}</td>
+                        <td>{{ @$d->nama }}</td>
+                        <td>{{ @$d->username }}</td>
+                        <td>{{ @$d->level }}</td>
                         <td>
                           <a style="float: left;" href="{{ url('user').'/'.@$d->id.'/edit' }}" class="btn btn-warning btn-sm">Edit</a>
 

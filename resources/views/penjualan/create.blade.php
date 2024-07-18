@@ -23,13 +23,10 @@
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-12 control-label col-form-label"><small>Atau Pilih Pelanggan</small></label>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 text-end control-label col-form-label">Pelanggan</label>
+              <label class="col-sm-3 text-end control-label col-form-label">Kartu Keluarga</label>
               <div class="col-sm-7">
                 <select name="PelangganID" class="form-control select2">
-                  <option value="">-- Pilih Pelanggan --</option>
+                  <option value="">-- Pilih No Kartu Keluarga --</option>
                   @if (@$pelanggan!=null)
                     @foreach ($pelanggan as $s)
                       <option value="{{ $s->PelangganID }}">{{ $s->NamaPelanggan }}</option>

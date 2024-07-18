@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.6.6deb5ubuntu0.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 16 Jul 2024 pada 11.27
--- Versi server: 10.4.16-MariaDB
--- Versi PHP: 7.4.12
+-- Host: localhost:3306
+-- Generation Time: 17 Jul 2024 pada 07.35
+-- Versi Server: 5.7.42-0ubuntu0.18.04.1
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -40,7 +39,9 @@ CREATE TABLE `detailpembelian` (
 --
 
 INSERT INTO `detailpembelian` (`DetailID`, `PembelianID`, `ProdukID`, `JumlahProduk`, `Subtotal`) VALUES
-(10, 3, 2, 1, 50000);
+(11, 4, 2, 1, 45000),
+(14, 4, 3, 1, 20000),
+(15, 5, 2, 200, 9000000);
 
 -- --------------------------------------------------------
 
@@ -61,12 +62,9 @@ CREATE TABLE `detailpenjualan` (
 --
 
 INSERT INTO `detailpenjualan` (`DetailID`, `PenjualanID`, `ProdukID`, `JumlahProduk`, `Subtotal`) VALUES
-(1, 1, 2, 1, 50000),
-(2, 1, 2, 2, 100000),
-(3, 2, 2, 1, 50000),
-(4, 3, 2, 1, 50000),
-(5, 4, 2, 1, 50000),
-(6, 1, 2, 1, 50000);
+(7, 7, 2, 1, 50000),
+(8, 7, 3, 1, 25000),
+(9, 9, 2, 1, 50000);
 
 -- --------------------------------------------------------
 
@@ -77,7 +75,7 @@ INSERT INTO `detailpenjualan` (`DetailID`, `PenjualanID`, `ProdukID`, `JumlahPro
 CREATE TABLE `pelanggan` (
   `PelangganID` int(11) NOT NULL,
   `NamaPelanggan` varchar(50) DEFAULT NULL,
-  `Alamat` text DEFAULT NULL,
+  `Alamat` text,
   `NomorTelepon` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -87,7 +85,8 @@ CREATE TABLE `pelanggan` (
 
 INSERT INTO `pelanggan` (`PelangganID`, `NamaPelanggan`, `Alamat`, `NomorTelepon`) VALUES
 (1, 'Kartika Sari', 'Desa Soditan Lasem', '0895673452167'),
-(2, 'saidan', 'sendang coyo ok', '0895673452167');
+(2, 'saidan', 'sendang coyo ok', '0895673452167'),
+(3, 'wasiah', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -107,8 +106,8 @@ CREATE TABLE `pembelian` (
 --
 
 INSERT INTO `pembelian` (`PembelianID`, `TanggalPembelian`, `TotalHarga`, `SupplierID`) VALUES
-(2, '2024-01-31', 0, 3),
-(3, '2024-04-23', 50000, 3);
+(4, '2024-07-17', 65000, 3),
+(5, '2024-07-17', 9000000, 4);
 
 -- --------------------------------------------------------
 
@@ -131,11 +130,9 @@ CREATE TABLE `penjualan` (
 --
 
 INSERT INTO `penjualan` (`PenjualanID`, `TanggalPenjualan`, `TotalHarga`, `PelangganID`, `Pembeli`, `tunai`, `kembali`) VALUES
-(1, '2024-02-01', 200000, 1, NULL, 200000, 50000),
-(2, '2024-02-28', 50000, NULL, 'bidin', NULL, NULL),
-(3, '2024-02-29', 50000, NULL, 'ote', NULL, NULL),
-(4, '2024-02-28', 50000, NULL, 'rohmat zaenal abidin', NULL, NULL),
-(6, '2024-04-23', NULL, NULL, '-', NULL, NULL);
+(7, '2024-07-17', 75000, 1, NULL, 80000, 5000),
+(8, '2024-07-17', NULL, NULL, 'warsono', NULL, NULL),
+(9, '2024-07-17', 50000, NULL, 'wasiah', 50000, 0);
 
 -- --------------------------------------------------------
 
@@ -158,8 +155,8 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`ProdukID`, `NamaProduk`, `Harga`, `harga_beli`, `harga_jual`, `Stok`, `GambarProduk`) VALUES
-(2, 'Mouse Wireles Merk Robot', 50000, NULL, NULL, 0, '1708317405_screencapture-192-168-77-252-mutu-public-indikator-mutu-2024-02-01-12_32_58.png'),
-(3, 'Headset Gojodoq', 60000, NULL, NULL, 100, NULL);
+(2, 'Mouse Wireles Merk Robot', 50000, 45000, 50000, 305, '1708317405_screencapture-192-168-77-252-mutu-public-indikator-mutu-2024-02-01-12_32_58.png'),
+(3, 'Headset Gojodoq', 60000, 20000, 25000, 56, NULL);
 
 -- --------------------------------------------------------
 
@@ -170,7 +167,7 @@ INSERT INTO `produk` (`ProdukID`, `NamaProduk`, `Harga`, `harga_beli`, `harga_ju
 CREATE TABLE `supplier` (
   `SupplierID` int(11) NOT NULL,
   `NamaSupplier` varchar(50) DEFAULT NULL,
-  `Alamat` text DEFAULT NULL,
+  `Alamat` text,
   `NomorTelepon` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -210,7 +207,7 @@ INSERT INTO `user` (`id`, `nama`, `username`, `password`, `level`) VALUES
 --
 
 --
--- Indeks untuk tabel `detailpembelian`
+-- Indexes for table `detailpembelian`
 --
 ALTER TABLE `detailpembelian`
   ADD PRIMARY KEY (`DetailID`),
@@ -218,7 +215,7 @@ ALTER TABLE `detailpembelian`
   ADD KEY `ProdukID` (`ProdukID`);
 
 --
--- Indeks untuk tabel `detailpenjualan`
+-- Indexes for table `detailpenjualan`
 --
 ALTER TABLE `detailpenjualan`
   ADD PRIMARY KEY (`DetailID`),
@@ -226,95 +223,86 @@ ALTER TABLE `detailpenjualan`
   ADD KEY `ProdukID` (`ProdukID`);
 
 --
--- Indeks untuk tabel `pelanggan`
+-- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
   ADD PRIMARY KEY (`PelangganID`);
 
 --
--- Indeks untuk tabel `pembelian`
+-- Indexes for table `pembelian`
 --
 ALTER TABLE `pembelian`
   ADD PRIMARY KEY (`PembelianID`);
 
 --
--- Indeks untuk tabel `penjualan`
+-- Indexes for table `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`PenjualanID`),
   ADD KEY `PelangganID` (`PelangganID`);
 
 --
--- Indeks untuk tabel `produk`
+-- Indexes for table `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`ProdukID`);
 
 --
--- Indeks untuk tabel `supplier`
+-- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`SupplierID`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `detailpembelian`
+-- AUTO_INCREMENT for table `detailpembelian`
 --
 ALTER TABLE `detailpembelian`
-  MODIFY `DetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `DetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT untuk tabel `detailpenjualan`
+-- AUTO_INCREMENT for table `detailpenjualan`
 --
 ALTER TABLE `detailpenjualan`
-  MODIFY `DetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `DetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT untuk tabel `pelanggan`
+-- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `PelangganID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `PelangganID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT untuk tabel `pembelian`
+-- AUTO_INCREMENT for table `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `PembelianID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `PembelianID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT untuk tabel `penjualan`
+-- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `PenjualanID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `PenjualanID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT untuk tabel `produk`
+-- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
   MODIFY `ProdukID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
--- AUTO_INCREMENT untuk tabel `supplier`
+-- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
   MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -34,10 +34,10 @@
                   @endphp
                     @foreach ($data as $d)
                       <tr>
-                        <td>{{ @$no++; }}</td>
-                        <td>{{ @$d->NamaSupplier; }}</td>
-                        <td>{{ @$d->Alamat; }}</td>
-                        <td>{{ @$d->NomorTelepon; }}</td>
+                        <td>{{ @$no++ }}</td>
+                        <td>{{ @$d->NamaSupplier }}</td>
+                        <td>{{ @$d->Alamat }}</td>
+                        <td>{{ @$d->NomorTelepon }}</td>
                         <td>
                           <a style="float: left;" href="{{ url('supplier').'/'.@$d->SupplierID.'/edit' }}" class="btn btn-warning btn-sm">Edit</a>
 
